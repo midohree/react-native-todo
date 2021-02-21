@@ -9,7 +9,7 @@ const WelcomePage = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>My Todo App</Text>
-      <Icon name="calendar" size={30} color='#fff' />
+      <Icon name='calendar' size={30} color='#fff' />
     </View>
   );
 };
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     fontWeight: '500',
+    marginBottom: 30,
   },
 });
 
