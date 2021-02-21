@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableHighlight, ScrollView } from 'react-na
 import Star from './Star';
 
 const TaskList = ({ todoList, handleOnPress, handleLongPress, handleStar }) => {
+  console.log(todoList);
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {todoList.map((todo) => {
