@@ -1,15 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import store from './store';
-import TodosContainer from './container/TodosContainer';
+import store from '../store';
+import TodosContainer from '../container/TodosContainer';
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <TodosContainer />
     </Provider>
   );
-}
+};
 
 export default App;

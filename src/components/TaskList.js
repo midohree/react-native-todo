@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableHighlight, ScrollView } from 'react-native';
 
+import Icon from 'react-native-vector-icons/AntDesign';
+
 import Star from './Star';
 
-const TaskList = ({ todoList, handleOnPress, handleLongPress, handleStar }) => {
-  console.log(todoList);
+Icon.loadFont();
+
+const TaskList = ({ todoList, handleOnPress, handleLongPress, handleStar, handleDelete }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {todoList.map((todo) => {
@@ -20,6 +23,7 @@ const TaskList = ({ todoList, handleOnPress, handleLongPress, handleStar }) => {
               <View style={styles.contentHead}>
                 <Text style={styles.title}>{todo.task}</Text>
                 <Star isMarked={todo.hasStar} onPress={handleStar} id={todo.id} />
+                <Icon name='delete' size={20} color='#DD4E41' onPress={() => handleDelete(todo.id)}/>
               </View>
               <Text style={styles.description}>{todo.description}</Text>
             </>

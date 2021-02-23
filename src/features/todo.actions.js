@@ -10,9 +10,14 @@ export const toggleTodo = id => ({
   payload: { id },
 });
 
-export const deleteTodo = todoList => ({
+export const deleteTodo = id => ({
   type: types.DELETE_TODO,
-  payload: { todoList },
+  payload: { id },
+});
+
+export const deleteAllTodo = todoList => ({
+  type: types.DELETE_ALL_TODO,
+  payload: { todoList }
 });
 
 export const addDescription = (id, value) => ({

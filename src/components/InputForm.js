@@ -16,7 +16,7 @@ const InputForm = ({
         style={styles.input}
         onChangeText={(text) => setValue(text)}
         value={value}
-        placeholder='태스크를 입력해 주세요.'
+        placeholder='태스크를 추가해 주세요.'
       />
       <Text onPress={() => handleOnPress(value)}>
         <Icon name='add-circle-outline' size={35} color='#037DFE' />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, Button, Alert } from 'react-native';
+import { StyleSheet, SafeAreaView, TouchableOpacity, Alert, Text } from 'react-native';
 
 import WelcomePage from './WelcomePage';
 import Header from './Header';
@@ -13,6 +13,7 @@ const Todos = ({
   onCreate,
   onToggle,
   onDelete,
+  onDeleteAll,
   onStar,
   onEditDesc,
 }) => {
@@ -23,7 +24,7 @@ const Todos = ({
   const [targetTodo, setTargetTodo] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => setWelcomePage(false), 5000);
+    setTimeout(() => setWelcomePage(false), 3000);
   }, []);
 
   const addTodo = value => {
@@ -46,9 +47,7 @@ const Todos = ({
   };
 
   const openModal = id => {
-    const targetTodo = todoList.filter(todo => {
-      return todo.id === id;
-    });
+    const targetTodo = todoList.filter(todo => todo.id === id);
 
     setTargetTodo(targetTodo);
     setModalOpen(true);
@@ -56,7 +55,6 @@ const Todos = ({
 
   const submitDetails = id => {
     setModalOpen(!isModalOpen);
-
     onEditDesc(id, todoDesc);
     setTodoDesc('');
   }
@@ -85,11 +83,14 @@ const Todos = ({
           <TaskList
             todoList={todoList}
             handleOnPress={onToggle}
+            handleDelete={onDelete}
             handleModal={setModalOpen}
             handleLongPress={openModal}
             handleStar={onStar}
           />
-          <Button title="Delete Done" onPress={() => onDelete()} />
+          <TouchableOpacity style={styles.buttonWrapper} onPress={() => onDeleteAll()}>
+            <Text style={styles.button}>DELETE ALL</Text>
+          </TouchableOpacity>
         </SafeAreaView>
       }
     </>
@@ -105,9 +106,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
-    backgroundColor: 'green',
+  buttonWrapper: {
+    alignItems: 'center',
   },
+  button: {
+    backgroundColor: '#DD4E41',
+    paddingHorizontal: 40,
+    paddingVertical: 10,
+    color: '#FFF',
+    borderRadius: 20,
+    overflow: 'hidden',
+  }
 });
 
 export default Todos;
