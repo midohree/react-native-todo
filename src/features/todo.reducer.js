@@ -7,9 +7,10 @@ const todoReducer = (state = initialState, { type, payload }) => {
     case types.ADD_TODO:
       return state.concat(payload.newTodo);
     case types.TOGGLE_TODO:
-      return state.map(todo =>
-        todo.id === payload.id ? { ...todo, isDone: !todo.isDone } : todo
-      );
+      return state.map(todo => {
+        if (todo.id === payload.id) todo.isDone = !todo.isDone;
+        return todo;
+      });
     case types.DELETE_TODO:
       return state.filter(todo => !(todo.id === payload.id));
     case types.DELETE_ALL_TODO: 
