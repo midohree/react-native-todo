@@ -2,8 +2,8 @@
 
 리액트 네이티브를 이용한 투두 리스트 애플리케이션 입니다.
 <p>
-  <img src="readmeAssets/react-native-todo-front" alt="react-native-todo-front" width="40%" />
-  <img src="readmeAssets/react-native-todo-back" alt="react-native-todo-back" width="40%" />
+  <img src="/readmeAssets/react-native-todo-front" alt="react-native-todo-front" width="40%" />
+  <img src="/readmeAssets/react-native-todo-back" alt="react-native-todo-back" width="40%" />
 </p>
 
 - **개발 기간 :** 2021/02/20 ~ 2021/02/22
