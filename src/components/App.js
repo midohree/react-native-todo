@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import createStore from '../store';
+import createStore from '../index';
 import Todos from './Todos';
 
 const store = createStore();
