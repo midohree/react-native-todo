@@ -18,20 +18,17 @@ const reducers = {
     return initialState;
   },
   markFavorite: (state, { payload: id }) => {
-    return state.map(todo => {
-      if (todo.id === id) todo.isFavorite = !todo.isFavorite;
-      return todo;
-    });
+    return state.map(todo => 
+      todo.id === id ? {...todo, isFavorite: !todo.isFavorite } : todo
+    );
   },
   addDescription: (state, { payload }) => {
-    // const id = payload.id;
-    // const description = payload.description;
+    const id = payload.id;
+    const description = payload.description;
 
-    // console.log(description);
-
-    // return state.map(todo => {
-    //   todo.id === id ? { ...todo, description: description } : todo
-    // });
+    return state.map(todo => 
+      todo.id === id ? { ...todo, description: description } : todo
+    );
   },
 };
 
@@ -44,7 +41,6 @@ export const todoSlice = createSlice({
 const selectAllState = createSelector(
   state => state,
   (todoList) => {
-    console.log(todoList)
     return todoList;
   }
 );

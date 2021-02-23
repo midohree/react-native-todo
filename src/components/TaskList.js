@@ -1,16 +1,16 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { StyleSheet, View, FlatList } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
-// import { todoSelector } from '../features/slice';
+import { todoSelector } from '../features/slice';
 import TaskItem from './TaskItem';
 
 Icon.loadFont();
 
-const TaskList = ({ todoList, handleLongPress }) => {
-  // const todoList = useSelector(todoSelector.all);
+const TaskList = ({ handleLongPress }) => {
+  const todoList = useSelector(todoSelector.all);
 
   const renderItem = ({ item }) => {
     return (

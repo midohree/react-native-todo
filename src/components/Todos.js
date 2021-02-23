@@ -55,7 +55,7 @@ const Todos = () => {
     const description = todoDesc;
 
     setModalOpen(!isModalOpen);
-    dispatch(addDescription(id, description));
+    dispatch(addDescription({id: id, description: description}));
     setTodoDesc('');
   }
 
@@ -80,7 +80,6 @@ const Todos = () => {
             handleOnPress={createTodo}
           />
           <TaskList
-            todoList={todoList}
             handleLongPress={openModal}
           />
           <TouchableOpacity style={styles.buttonWrapper} onPress={() => dispatch(deleteAllTodo())}>

@@ -29,7 +29,7 @@ const TodoDetails = ({
       />
       <Pressable
         style={styles.button}
-        onPress={handleSubmit(item.id)}>
+        onPress={() => handleSubmit(item.id)}>
         <Text style={styles.buttonText}>OK</Text>
       </Pressable>
     </>
