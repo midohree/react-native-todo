@@ -25,7 +25,7 @@ export const addDescription = (id, value) => ({
   payload: { id: id, description: value },
 });
 
-export const markStar = id => ({
+export const markFavorite = id => ({
   type: types.MARK_STAR,
   payload: { id },
 });

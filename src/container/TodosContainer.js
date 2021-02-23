@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Todos from '../components/Todos';
-import { addTodo, toggleTodo, deleteAllTodo, deleteTodo, markStar, addDescription } from '../features/todo.actions';
+import { addTodo, toggleTodo, deleteAllTodo, deleteTodo, markFavorite, addDescription } from '../features/todo.actions';
 
 function TodosContainer() {
   const todoList = useSelector(state => state.todoList);
@@ -11,8 +11,8 @@ function TodosContainer() {
   const onCreate = value => dispatch(addTodo(value));
   const onToggle = useCallback(id => dispatch(toggleTodo(id)), [dispatch]);
   const onDelete = useCallback(id => dispatch(deleteTodo(id)), [dispatch]);
-  const onDeleteAll = useCallback(todoList => dispatch(deleteAllTodo(todoList)), [dispatch]);
-  const onStar = useCallback(id => dispatch(markStar(id)), [dispatch]);
+  const onDeleteAll = () => dispatch(deleteAllTodo());
+  const onFavorite = useCallback(id => dispatch(markFavorite(id)), [dispatch]);
   const onEditDesc = useCallback((id, value) => dispatch(addDescription(id, value)), [dispatch]);
 
   return (
@@ -22,7 +22,7 @@ function TodosContainer() {
       onToggle={onToggle}
       onDelete={onDelete}
       onDeleteAll={onDeleteAll}
-      onStar={onStar}
+      onFavorite={onFavorite}
       onEditDesc={onEditDesc}
     />
   );

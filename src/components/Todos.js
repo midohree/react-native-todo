@@ -14,7 +14,7 @@ const Todos = ({
   onToggle,
   onDelete,
   onDeleteAll,
-  onStar,
+  onFavorite,
   onEditDesc,
 }) => {
   const [inputValue, setInputValue] = useState('');
@@ -39,7 +39,7 @@ const Todos = ({
       task: value,
       description: '',
       isDone: false,
-      hasStar: false,
+      isFavorite: false,
     };
 
     onCreate(newTodo);
@@ -68,7 +68,7 @@ const Todos = ({
           <ModalContainer isModalOpen={isModalOpen} setModalOpen={setModalOpen}>
             <TodoDetails 
               handleSubmit={submitDetails}
-              handleStar={onStar}
+              handleFavorite={onFavorite}
               todo={targetTodo}
               value={todoDesc}
               setValue={setTodoDesc}
@@ -82,11 +82,11 @@ const Todos = ({
           />
           <TaskList
             todoList={todoList}
-            handleOnPress={onToggle}
+            handlePress={onToggle}
             handleDelete={onDelete}
             handleModal={setModalOpen}
             handleLongPress={openModal}
-            handleStar={onStar}
+            handleFavorite={onFavorite}
           />
           <TouchableOpacity style={styles.buttonWrapper} onPress={() => onDeleteAll()}>
             <Text style={styles.button}>DELETE ALL</Text>

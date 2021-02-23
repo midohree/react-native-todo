@@ -4,7 +4,7 @@ const todoActionTypes = {
   DELETE_ALL_TODO: 'DELETE_ALL_TODO',
   DELETE_TODO: 'DELETE_TODO',
   ADD_DESC: 'ADD_DESC',
-  MARK_STAR: 'MARK_STAR',
+  MARK_FAVORITE: 'MARK_FAVORITE',
 };
 
 export default todoActionTypes;

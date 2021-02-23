@@ -2,9 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View, Pressable, TextInput } from 'react-native';
 
 import Star from './Star';
+import Badge from './Badge';
 
 const TodoDetails = ({
-  handleStar,
+  handleFavorite,
   handleSubmit,
   todo,
   value,
@@ -14,9 +15,12 @@ const TodoDetails = ({
 
   return (
     <>
+      <View style={styles.header}>
+        <Badge isCompleted={item.isDone} />
+      </View>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{item.task}</Text>
-        <Text>{item.isDone ? 'Done' : 'Progress'}</Text>
+        <Star isMarked={item.isFavorite} onPress={handleFavorite} id={item.id} />
       </View>
       <TextInput
         onChangeText={(text) => setValue(text)}
@@ -24,7 +28,6 @@ const TodoDetails = ({
         placeholder='상세 설명을 적어주세요.'
         style={styles.input}
       />
-      <Star isMarked={item.hasStar} onPress={handleStar} id={item.id} />
       <Pressable
         style={styles.button}
         onPress={() => handleSubmit(item.id)}>
@@ -41,10 +44,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginVertical: 10,
+    paddingVertical: 10,
   },
   title: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: '600',
+  },
+  header: {
+    alignItems: 'flex-start',
   },
   input: {
     height: 40,
@@ -55,6 +63,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 20,
     alignItems: 'center',
+    marginVertical: 20,
   },
   buttonText: {
     color: '#fff',
