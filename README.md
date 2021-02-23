@@ -52,3 +52,6 @@ npm run ios (Emulator)
 
 또한 redux-toolkit을 사용해 actions와 reducer를 하나로 합쳐주는 createSlice를 통해 기능별로 폴더를 나누는 형식의 ducks pattern을 사용해 디렉토리 구조를 새로 짜보았습니다. 기존에 redux를 사용했을 때에는 actions, reducers, constatns등 하나의 기능을 구현하기 위해 파일을 모두 분리했어야 했는데 redux toolkit의 slice를 통해 actions와 reducers를 통합해 보다 명시적인 폴더 구성을 이루고자 했습니다.
 
+**React-Native**
+
+리액트 네이티브를 처음 사용함으로써 보다 쉽게 앱을 구현하도록 도와주는 Expo를 사용할것인지, 순수 RN으로 개발할 지 고민했습니다. 하지만 Expo로 개발을 시작하면 간단하긴 하지만 Expo에서 제공하는 API만 사용 할 수 있으며 필요한 기능이 없는 경우 모듈을 만들어 사용하지 못한다는 단점이 존재했고, 단지 작은 투두리스트 앱이긴 하지만 확장성과 자유도에서 뛰어난 React-Native-Cli를 사용하기로 했습니다. 하지만 RN으로 처음 초기 세팅을 할 때 역시나 문제가 발생했고, Xcode의 업데이트로 인한 플리퍼 파일과의 호환 문제라는 것을 알게 되어 플리퍼를 다운그레이드 하는 방법으로 해결 할 수 있었습니다. 
