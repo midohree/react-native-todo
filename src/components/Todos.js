@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { StyleSheet, SafeAreaView, TouchableOpacity, Alert, Text } from 'react-native';
 
 import WelcomePage from './WelcomePage';
@@ -7,27 +8,24 @@ import InputForm from './InputForm';
 import TaskList from './TaskList';
 import TodoDetails from './TodoDetails';
 import ModalContainer from './ModalContainer';
+import { todoAction, todoSelector } from '../features/slice';
 
-const Todos = ({
-  todoList,
-  onCreate,
-  onToggle,
-  onDelete,
-  onDeleteAll,
-  onFavorite,
-  onEditDesc,
-}) => {
+const Todos = () => {
   const [inputValue, setInputValue] = useState('');
   const [todoDesc, setTodoDesc] = useState('');
   const [isWelcomePage, setWelcomePage] = useState(true);
   const [isModalOpen, setModalOpen] = useState(false);
   const [targetTodo, setTargetTodo] = useState([]);
 
+  const dispatch = useDispatch();
+  const todoList = useSelector(todoSelector.all);
+  const { addTodo, addDescription, deleteAllTodo } = todoAction;
+
   useEffect(() => {
     setTimeout(() => setWelcomePage(false), 3000);
   }, []);
 
-  const addTodo = value => {
+  const createTodo = value => {
     if (!value) {
       Alert.alert('다시 시도해주세요😅', '입력칸이 비어있습니다.', [{ text: 'OK' }]);
 
@@ -42,7 +40,7 @@ const Todos = ({
       isFavorite: false,
     };
 
-    onCreate(newTodo);
+    dispatch(addTodo(newTodo));
     setInputValue('');
   };
 
@@ -54,8 +52,10 @@ const Todos = ({
   }
 
   const submitDetails = id => {
+    const description = todoDesc;
+
     setModalOpen(!isModalOpen);
-    onEditDesc(id, todoDesc);
+    dispatch(addDescription(id, description));
     setTodoDesc('');
   }
 
@@ -68,7 +68,6 @@ const Todos = ({
           <ModalContainer isModalOpen={isModalOpen} setModalOpen={setModalOpen}>
             <TodoDetails 
               handleSubmit={submitDetails}
-              handleFavorite={onFavorite}
               todo={targetTodo}
               value={todoDesc}
               setValue={setTodoDesc}
@@ -78,17 +77,13 @@ const Todos = ({
           <InputForm
             setValue={setInputValue}
             value={inputValue}
-            handleOnPress={addTodo}
+            handleOnPress={createTodo}
           />
           <TaskList
             todoList={todoList}
-            handlePress={onToggle}
-            handleDelete={onDelete}
-            handleModal={setModalOpen}
             handleLongPress={openModal}
-            handleFavorite={onFavorite}
           />
-          <TouchableOpacity style={styles.buttonWrapper} onPress={() => onDeleteAll()}>
+          <TouchableOpacity style={styles.buttonWrapper} onPress={() => dispatch(deleteAllTodo())}>
             <Text style={styles.button}>DELETE ALL</Text>
           </TouchableOpacity>
         </SafeAreaView>
@@ -116,7 +111,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     borderRadius: 20,
     overflow: 'hidden',
-  }
+  },
 });
 
 export default Todos;

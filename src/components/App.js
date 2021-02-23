@@ -1,13 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import store from '../store';
-import TodosContainer from '../container/TodosContainer';
+import createStore from '../store';
+import Todos from './Todos';
+
+const store = createStore();
 
 const App = () => {
   return (
     <Provider store={store}>
-      <TodosContainer />
+      <Todos />
     </Provider>
   );
 };

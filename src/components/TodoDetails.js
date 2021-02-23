@@ -5,7 +5,6 @@ import Star from './Star';
 import Badge from './Badge';
 
 const TodoDetails = ({
-  handleFavorite,
   handleSubmit,
   todo,
   value,
@@ -20,7 +19,7 @@ const TodoDetails = ({
       </View>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{item.task}</Text>
-        <Star isMarked={item.isFavorite} onPress={handleFavorite} id={item.id} />
+        <Star isMarked={item.isFavorite} id={item.id} />
       </View>
       <TextInput
         onChangeText={(text) => setValue(text)}
@@ -30,7 +29,7 @@ const TodoDetails = ({
       />
       <Pressable
         style={styles.button}
-        onPress={() => handleSubmit(item.id)}>
+        onPress={handleSubmit(item.id)}>
         <Text style={styles.buttonText}>OK</Text>
       </Pressable>
     </>

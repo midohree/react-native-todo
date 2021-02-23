@@ -1,7 +1,17 @@
-import { createStore } from 'redux';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import rootReducer from './rootReducer';
+import { TODOS, todoReducer } from './features/slice';
 
-const store = createStore(rootReducer);
+const rootReducer = combineReducers({
+  [TODOS]: todoReducer,
+});
 
-export default store;
+const createStore = () => {
+  const store = configureStore({
+    reducer: rootReducer,
+  });
+
+  return store;
+};
+
+export default createStore;
