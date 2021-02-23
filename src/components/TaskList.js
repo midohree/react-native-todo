@@ -1,22 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { StyleSheet, View, FlatList } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
+import { todoSelector } from '../features/slice';
 import TaskItem from './TaskItem';
 
 Icon.loadFont();
 
-const TaskList = ({ todoList, handlePress, handleLongPress, handleFavorite, handleDelete }) => {
+const TaskList = ({ handleLongPress }) => {
+  const todoList = useSelector(todoSelector.all);
+
   const renderItem = ({ item }) => {
     return (
-      <TaskItem
-        item={item}
-        onPress={handlePress}
-        onLongPress={handleLongPress}
-        onFavorite={handleFavorite}
-        onPressDelete={handleDelete}
-      />
+      <TaskItem item={item} onLongPress={handleLongPress} />
     );
   };
 
